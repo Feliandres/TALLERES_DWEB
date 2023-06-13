@@ -1,3 +1,4 @@
+// *************** IMPORTACIONES ******************************
 
 // IMPORTACION DE PASSPORT
 const passport = require('passport')
@@ -7,6 +8,8 @@ const User = require('../models/User')
 
 // IMPORTACION DE ESTRATEGIA
 const LocalStrategy = require('passport-local').Strategy
+
+// ***************** CONFIGURACIONES *******************************
 
 // CONFIGURACION DE LA ESTRATEGIA
 passport.use(new LocalStrategy({
