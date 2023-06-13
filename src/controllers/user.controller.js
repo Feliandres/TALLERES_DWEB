@@ -1,3 +1,9 @@
+const User = require('../models/User')
+const passport = require("passport")
+
+
+
+
 const renderRegisterForm =(req,res)=>{
     res.render('user/registerForm')
 }
@@ -35,9 +41,10 @@ const renderLoginForm =(req,res)=>{
     res.render('user/loginForm')
 }
 
-const loginUser =(req,res)=>{
-    res.send('login user')
-}
+const loginUser = passport.authenticate('local',{
+    failureRedirect:'/user/login',
+    successRedirect:'/portafolios'
+})
 
 const logoutUser =(req,res)=>{
     res.send('logout user')

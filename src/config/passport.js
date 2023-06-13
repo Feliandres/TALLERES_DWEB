@@ -31,13 +31,15 @@ passport.use(new LocalStrategy({
 }))
 
 
-
+// SERIALIZACION DEL USUARIO
 passport.serializeUser((user,done)=>{
     done(null,user.id)
 })
 
-
+// DESERIALIZACION DEL USUARIO
 passport.deserializeUser(async (id, done) => {
+
+    // TRAER EL USUARIO EN BASE AL ID DE LA SESION
     const userDB  = await User.findById(id).exec();
     return done(null,userDB)
 });

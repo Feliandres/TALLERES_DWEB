@@ -28,15 +28,28 @@ app.use(express.urlencoded({extended:false}))
 app.use(methodOverride('_method'))
 
 // Middleware de Passport
+
+// CREANDO LA KEY PARA EL SERVIDOR - SECRET
 app.use(session({ 
     secret: 'secret',
     resave:true,
     saveUninitialized:true
 }));
+
+// INICIALIZAR EL PASSPORT
 app.use(passport.initialize())
+
+// INICIALIZAR LA SESION
 app.use(passport.session())
 
-// Variables globales
+// ****************************** Variables globales *******************************
+
+
+app.use((req,res,next)=>{
+    res.locals.user = req.user?.name || null
+    next()
+})
+
 //RUTAS
 app.use(require('./routers/portafolio.routes'))
 app.use(require('./routers/user.routes'))
